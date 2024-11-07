@@ -1,12 +1,14 @@
+//1
+
 import mongoose from "mongoose"
-import {genSalt} from "bcrypt"
-const userSchema = new Mongoose.Schema({
+import {genSalt, hash} from "bcrypt"
+const userSchema = new mongoose.Schema({
     email:{
         type:String,
         required:[true,"Email is required"],
         unique:true,
     },
-    email:{
+    password:{
         type:String,
         required:[true,"Password is required"],
     },
@@ -38,6 +40,6 @@ userSchema.pre("save", async function(next){
     next();
 })
 
-const User = mongoose.model("Users", userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;
